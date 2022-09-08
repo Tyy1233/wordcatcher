@@ -4,6 +4,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <string.h>
+#include <sstream>
 using namespace std;
 
 
@@ -182,23 +183,32 @@ void StealthMode() {
 
 }
 void Catcher() {
-    fstream file;
+    ifstream file;
     string word, t, q, filename;
     string line;
+    ifstream infile("record.txt");
+    int pos = 0;
+    string target = "test";
 
     filename = "record.txt";
 
     file.open((filename.c_str()));
     
-    if (filename.c_str()) {
-        /*while (!filename.rfind()) {
-            if (word.compare(line) == 0) {
-                cout << "test";
+    if (file.is_open()) {
+        while (infile && pos != string::npos) {
+
+
+            getline(infile, line);
+
+            pos = line.find(target);
+
+            //if found
+            if (pos != string::npos)
+            {
+                cout << "test worked" << endl;
             }
-        }*/
-
+        }
     }
-
 }
 int main ()  {
     StealthMode;
